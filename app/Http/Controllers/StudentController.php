@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\CourseStudent;
 use App\Models\Mark;
 use App\Models\Student;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -97,6 +98,19 @@ class StudentController extends Controller
         $mark->save();
 
         return redirect()->route('student.index')->with('success', 'Mark created successfully');
+    }
+
+    public function getCourseMark(Request  $request)
+    {
+        $mark = Mark::whereCourseId($request->course_id)->whereStudentId($request->student_id)->first();
+        if ($mark){
+            return response()->json([
+                'mark' => $mark->mark
+            ]);
+        }
+        return response()->json([
+            'mark' => ''
+        ]);
     }
 
 

@@ -33,7 +33,8 @@ Route::group(['prefix' => 'student', 'as' => 'student.'], function () {
     Route::put('update/{id}', [StudentController::class, 'update'])->name('update');
     Route::delete('delete/{id}', [StudentController::class, 'delete'])->name('delete');
 
-    Route::get('add-course-mark/{student_mark}', [StudentController::class, 'addCourseMark'])->name('addCourseMark');
+    Route::get('add-course-mark/{student_id}', [StudentController::class, 'addCourseMark'])->name('addCourseMark');
     Route::post('store-course-mark/{student_id}', [StudentController::class, 'storeCourseMark'])->name('storeCourseMark');
+    Route::get('get-course-mark', [StudentController::class, 'getCourseMark'])->name('get-course-mark');
 });
 
